@@ -25,7 +25,7 @@ SECRET_KEY = '$zp$f%^^%z=05oh)cgu6u)#9x1d*(8)cl5p$h01nis&z#)!a3i'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['common-workspace-harshitgarg.c9users.io', 'localhost']
 
 
 # Application definition

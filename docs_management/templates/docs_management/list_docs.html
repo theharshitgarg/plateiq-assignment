@@ -21,6 +21,7 @@
             <th>Status</th>
             <th>View</th>
             <th>Change Status</th>
+            <th>Update</th>
           </tr>
         </thead>
         <tbody>
@@ -33,6 +34,7 @@
               <td onclick="updateStatus()">
                 <form method="post" action="{% url 'update_status' doc.id %}">{% csrf_token %}<input type="hidden" value="{{ doc.next_status }}" name="status"><button type="submit">Change</button></form>
               </td>
+              <td><a href="{% url 'list_digitized_docs' doc.id %}">Update</a></td>
             </tr>
           {% endfor %}
         </tbody>

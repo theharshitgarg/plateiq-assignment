@@ -17,6 +17,7 @@ from . import serializers
 
 from docs_management import (models, forms)
 
+
 def upload_doc(request):
     if request.method == 'POST' and request.FILES['doc']:
         doc_file = request.FILES['doc']
@@ -47,10 +48,10 @@ def update_status_view(request, pk):
         doc.save()
 
         return redirect("list_docs")
-        
+
 
 def digitized_doc_details(request, pk):
-    
+
     doc = get_object_or_404(models.ExtractedDoc, uploaded_doc__id=pk)
     serializer = serializers.UpdateExtracedDocSerializer(doc)
     form = forms.ExtractedDocUpdateForm(serializer.data)
@@ -92,4 +93,3 @@ class UploadedDocListGenerics(generics.ListAPIView):
         serializer = UploadedDocSerializer(paginated_queryset, many=True)
 
         return self.get_paginated_response(serializer.data)
-

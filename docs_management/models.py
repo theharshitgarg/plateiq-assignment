@@ -7,23 +7,25 @@ from django.utils import timezone
 
 from django.contrib.postgres.fields import ArrayField
 # Create your models here.
+
+
 class UploadedDoc(models.Model):
     UPLOADED = 100
     UNDER_REVIEW = 200
     DIGITIZED = 300
-    
+
     CHOICES = (
         (UPLOADED, 'Uploaded'),
         (UNDER_REVIEW, 'UnderReview'),
         (DIGITIZED, 'Digitized')
     )
-    
+
     uploaded_on = models.DateTimeField(default=timezone.now)
     storage_path = models.CharField(max_length=1000)
     status = models.IntegerField(
         choices=CHOICES,
         default=UPLOADED)
-    
+
     @classmethod
     def create(cls, url):
         doc = UploadedDoc()
@@ -35,7 +37,7 @@ class UploadedDoc(models.Model):
     def update_status(self, update_status):
         if update_status > self.status:
             self.status = update_status
-    
+
     @property
     def next_status(self):
         if self.status < self.DIGITIZED:
@@ -47,13 +49,12 @@ class UploadedDoc(models.Model):
         return str(self.id) + " : " + str(self.status)
 
 
-
 class InvoiceEntry(models.Model):
     item_name = models.CharField(max_length=400)
     quantity = models.IntegerField(default=1)
 
     def __str__(self):
-        return self.item_name + " : qty " + str(self.quantity) 
+        return self.item_name + " : qty " + str(self.quantity)
 
 
 class ExtractedDoc(models.Model):

@@ -9,24 +9,24 @@ class UploadedDocSerializer(serializers.ModelSerializer):
         fields = ("id", "uploaded_on", "storage_path", "status")
 
 
-
 class UpdateStatusSerializer(serializers.ModelSerializer):
-	status = serializers.IntegerField()
-	class Meta:
-		model = UploadedDoc
-		fields = ["status"]
+    status = serializers.IntegerField()
 
-	def update_status(self, instance):
-		instance.status = self.data["status"]
+    class Meta:
+        model = UploadedDoc
+        fields = ["status"]
 
-		return instance
+    def update_status(self, instance):
+        instance.status = self.data["status"]
+
+        return instance
 
 
 class UpdateExtracedDocSerializer(serializers.ModelSerializer):
-	class Meta:
-		model = ExtractedDoc
-		# fields = ["invoice_number", "summary"]
-		exclude = ["uploaded_doc"]
+    class Meta:
+        model = ExtractedDoc
+        # fields = ["invoice_number", "summary"]
+        exclude = ["uploaded_doc"]
 
 
 # class PurchaseItemSerializer(serializers.Serializer):
